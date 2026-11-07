@@ -1,105 +1,153 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101827">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827"><meta name="description" content="AI Agent Hub - لوحة إدارة المشاريع والحسابات">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg">
 <title>AI Agent Hub</title>
 <style>
-:root{--bg:#101827;--panel:#1b2a3e;--panel2:#24364d;--text:#f7f9fc;--muted:#a9bad0;--mint:#55d6a5;--gold:#f4d35e;--red:#ff8e8e}
+:root{--bg:#101827;--panel:#1b2a3e;--panel2:#24364d;--text:#f7f9fc;--muted:#a9bad0;--mint:#55d6a5;--gold:#f4d35e;--red:#a34b60;--blue:#65b8ff}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#101827,#14243a 60%,#101827);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
-.app{max-width:650px;margin:auto;padding:16px 14px 34px}.top{display:flex;align-items:center;justify-content:space-between;margin:6px 0 16px}.brand{display:flex;gap:10px;align-items:center}.robot{width:48px;height:48px;border-radius:15px;background:#29425f;display:grid;place-items:center;font-size:27px}.brand h1{font-size:20px;margin:0}.brand small,.muted,.note{color:var(--muted)}.brand small{font-size:11px}.pill{font-size:11px;border:1px solid #42614f;color:var(--mint);padding:6px 9px;border-radius:30px}
-.card{background:var(--panel);border:1px solid #2a3b52;border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 10px 25px #0002}.hero{background:linear-gradient(135deg,#203a54,#1b2a3e);display:flex;justify-content:space-between;align-items:center}.status{font-size:22px;font-weight:750;margin:5px 0}.orb{width:55px;height:55px;border-radius:50%;display:grid;place-items:center;background:#174b3c;font-size:26px}
-.btn{border:0;border-radius:13px;padding:12px 14px;background:#315477;color:white;font-weight:700;font-size:14px;cursor:pointer}.btn.primary{background:#267a60}.btn.danger{background:#793e4a}.btn.full{width:100%;margin-top:10px}.btn.small{padding:8px 10px;font-size:12px}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:16px 0}.tab{background:#1b2a3e;border:1px solid #2a3b52;color:var(--muted);border-radius:12px;padding:11px 3px;font-size:13px}.tab.active{background:#315477;color:white;border-color:#5685ad}
-h2{font-size:18px;margin:18px 2px 10px}.field{width:100%;padding:12px;border-radius:12px;border:1px solid #40536c;background:#101827;color:white;margin:7px 0 12px;font:inherit}.field::placeholder{color:#8294aa}.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:var(--panel);border:1px solid #2a3b52;border-radius:16px;padding:13px}.stat b{display:block;font-size:20px;margin:5px 0}.stat span{font-size:12px;color:var(--muted)}
-.item{display:flex;align-items:center;gap:10px;background:#17263a;border:1px solid #2a3b52;border-radius:14px;padding:11px;margin:8px 0}.ico{width:40px;height:40px;border-radius:12px;background:var(--panel2);display:grid;place-items:center;font-size:20px;flex:none}.item-main{min-width:0;flex:1}.item-main b{display:block}.item-main small{display:block;color:var(--muted);font-size:12px;margin-top:3px}.tag{font-size:11px;color:var(--gold);white-space:nowrap}
-.hidden{display:none!important}.note{font-size:12px;line-height:1.7}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.check{display:flex;gap:10px;align-items:center;margin:13px 0}.check input{width:19px;height:19px}
-.empty{padding:18px;text-align:center;color:var(--muted);border:1px dashed #40536c;border-radius:14px}.danger-text{color:var(--red)}footer{text-align:center;color:#8195ad;font-size:10px;margin-top:22px}
-</style>
-</head>
-<body>
-<main class="app">
+.app{max-width:620px;margin:auto;padding:16px 14px 34px}.top{display:flex;align-items:center;justify-content:space-between;margin:5px 0 16px}.brand{display:flex;gap:11px;align-items:center}.robot{width:49px;height:49px;border-radius:15px;background:#29425f;display:grid;place-items:center;font-size:28px}.brand h1{font-size:21px;margin:0}.brand small{color:var(--muted)}.pill{font-size:11px;border:1px solid #42614f;color:var(--mint);padding:7px 10px;border-radius:30px}
+.card{background:var(--panel);border:1px solid #2a3b52;border-radius:21px;padding:17px;margin:12px 0;box-shadow:0 10px 25px #0002}.hero{background:linear-gradient(135deg,#203a54,#1b2a3e);display:flex;justify-content:space-between;align-items:center}.muted{color:var(--muted)}.status{font-size:23px;font-weight:800;margin:5px 0}.orb{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#174b3c;font-size:27px}
+.btn{border:0;border-radius:14px;padding:13px 15px;background:#315477;color:white;font-weight:750;font-size:15px;cursor:pointer}.btn.primary{background:#267a60}.btn.danger{background:#874356}.btn.full{width:100%;margin-top:12px}.btn:active,.tab:active{transform:scale(.99)}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:var(--panel);border:1px solid #2a3b52;border-radius:17px;padding:14px}.stat b{display:block;font-size:24px;margin:6px 0}.stat span{color:var(--muted);font-size:13px}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:17px 0}.tab{background:#1b2a3e;border:1px solid #2a3b52;color:var(--muted);border-radius:13px;padding:12px 3px;font-size:13px;cursor:pointer}.tab.active{background:#315477;color:white;border-color:#5685ad}.section-title{font-size:19px;margin:20px 2px 10px}.agent,.project,.account{display:flex;align-items:center;gap:11px;background:var(--panel);border:1px solid #2a3b52;border-radius:16px;padding:13px;margin:9px 0}.ico{width:42px;height:42px;background:var(--panel2);border-radius:13px;display:grid;place-items:center;font-size:21px;flex:none}.grow{flex:1;min-width:0}.grow strong{font-size:15px}.grow small{display:block;color:var(--muted);margin-top:4px;font-size:12px;overflow-wrap:anywhere}.state{font-size:12px;color:var(--gold);text-align:left}.field{width:100%;padding:14px;border-radius:14px;border:1px solid #40536c;background:#101827;color:white;margin:7px 0 14px;font-size:15px}.field::placeholder{color:#8292a7}label{display:block;margin-top:9px}.note{font-size:12px;line-height:1.8;color:var(--muted)}.hidden{display:none!important}.row{display:flex;gap:8px;flex-wrap:wrap}.row .btn{flex:1}.log{display:flex;gap:10px;margin:12px 0;font-size:14px}.ok{color:var(--mint)}.warn{color:var(--gold)}.badge{font-size:11px;color:var(--gold);border:1px solid #665c36;padding:4px 8px;border-radius:20px}.empty{color:var(--muted);text-align:center;padding:18px}.modal{position:fixed;inset:0;background:#0009;display:none;align-items:flex-end;justify-content:center;padding:12px;z-index:5}.modal.show{display:flex}.sheet{width:min(620px,100%);max-height:90vh;overflow:auto;background:#1b2a3e;border:1px solid #40536c;border-radius:22px;padding:18px}.sheet h3{margin:2px 0 16px}footer{text-align:center;color:#8195ad;font-size:11px;margin-top:24px}
+</style></head>
+<body><main class="app">
 <header class="top"><div class="brand"><div class="robot">🤖</div><div><h1>AI Agent Hub</h1><small>ALL-IN-ONE CONTROL CENTER</small></div></div><span class="pill">نسخة تشغيلية أولية</span></header>
 <section class="card hero"><div><div class="muted">حالة النظام</div><div class="status" id="systemStatus">جاهز للإعداد</div><div class="muted">إدارة مشاريعك وحساباتك من مكان واحد</div></div><div class="orb">✦</div></section>
-<div class="grid">
- <div class="stat">📁<b id="projectCount">0</b><span>مشاريع محفوظة</span></div>
- <div class="stat">🔗<b id="accountCount">0</b><span>حسابات مضافة</span></div>
-</div>
-<nav class="tabs">
- <button class="tab active" data-tab="home">الرئيسية</button><button class="tab" data-tab="projects">المشاريع</button><button class="tab" data-tab="settings">الإعدادات</button><button class="tab" data-tab="status">الاتصال</button>
-</nav>
+<div class="stats"><div class="stat">📁<b id="projectCount">0</b><span>مشاريع محفوظة</span></div><div class="stat">🔗<b id="accountCount">0</b><span>حسابات مضافة</span></div></div>
+<nav class="tabs"><button class="tab active" data-tab="home">الرئيسية</button><button class="tab" data-tab="projects">المشاريع</button><button class="tab" data-tab="settings">الإعدادات</button><button class="tab" data-tab="connect">الاتصال</button><button class="tab" data-tab="earnings">الأرباح</button></nav>
+
 <section id="home">
- <h2>مركز العمليات</h2>
- <div class="card"><b>ابدأ من هنا</b><p class="muted">أنشئ مشروعًا، ثم أضف الحسابات التي تريد إدارتها. إضافة الحساب هنا تحفظ بياناته التنظيمية فقط ولا تمنح صلاحية الدخول للمنصة.</p><button class="btn primary full" id="goProjects">＋ إضافة مشروع</button></div>
- <h2>المشاريع الحالية</h2><div id="homeProjects"></div>
- <h2>تنبيه مهم</h2><div class="card note">هذه النسخة تدير قائمة المشاريع والحسابات محليًا على جهازك. النشر التلقائي والتحليلات الحية وربط TikTok وInstagram وFacebook وYouTube تحتاج تفويضًا رسميًا وربط API منفصلًا. لا تضع كلمات المرور أو أكواد التحقق هنا.</div>
+<h2 class="section-title">مركز العمليات</h2><div class="card"><b>ابدأ من هنا</b><p class="muted">أنشئ مشروعًا، ثم أضف الحسابات التي تريد إدارتها. يتم حفظ بيانات التنظيم على هذا الجهاز.</p><button class="btn primary full" id="homeAddProject">＋ إضافة مشروع</button></div>
+<h2 class="section-title">المشاريع الحالية</h2><div id="homeProjects"></div>
+<h2 class="section-title">سجل النشاط</h2><div class="card" id="activityLog"><div class="log"><span class="ok">●</span><span>تم تجهيز لوحة التحكم المحلية.</span></div><div class="log"><span class="warn">●</span><span>لم يتم تفويض أي منصة للنشر التلقائي بعد.</span></div></div>
 </section>
+
 <section id="projects" class="hidden">
- <h2>إضافة مشروع جديد</h2>
- <div class="card">
-  <label for="projectName">اسم المشروع</label><input class="field" id="projectName" placeholder="مثال: توتو للأطفال">
-  <label for="projectType">نوع المشروع</label><select class="field" id="projectType"><option>محتوى أطفال</option><option>تسويق مطعم</option><option>متجر إلكتروني</option><option>مشروع آخر</option></select>
-  <label for="projectDesc">وصف مختصر</label><textarea class="field" id="projectDesc" rows="2" placeholder="هدف المشروع ونوع المحتوى..."></textarea>
-  <button class="btn primary full" id="addProject">حفظ المشروع</button>
- </div>
- <h2>المشاريع المسجلة</h2><div id="projectsList"></div>
- <div id="accountEditor" class="card hidden">
-  <h2 style="margin-top:0">إضافة حساب للمشروع</h2><div class="muted" id="selectedProjectName"></div>
-  <label for="platform">المنصة</label><select class="field" id="platform"><option>TikTok</option><option>Facebook</option><option>Instagram</option><option>YouTube</option><option>أخرى</option></select>
-  <label for="accountLabel">اسم الحساب أو رابطه العام</label><input class="field" id="accountLabel" placeholder="@username أو رابط الحساب">
-  <label for="accountPurpose">الغرض</label><select class="field" id="accountPurpose"><option>نشر محتوى</option><option>تسويق وإعلانات</option><option>متابعة وتحليلات</option></select>
-  <button class="btn primary full" id="addAccount">حفظ الحساب</button>
-  <button class="btn full" id="closeAccount">إغلاق</button>
- </div>
+<h2 class="section-title">إضافة مشروع جديد</h2><div class="card">
+<label for="projectName">اسم المشروع</label><input class="field" id="projectName" placeholder="مثال: toto kids" maxlength="60">
+<label for="projectType">نوع المشروع</label><select class="field" id="projectType"><option>محتوى أطفال</option><option>مطعم وأغذية</option><option>تجارة إلكترونية</option><option>تعليمي</option><option>شخصي</option><option>أخرى</option></select>
+<label for="projectDesc">وصف مختصر</label><textarea class="field" id="projectDesc" rows="3" placeholder="هدف المشروع ونوع المحتوى..." maxlength="300"></textarea>
+<button class="btn primary full" id="saveProject">حفظ المشروع</button><p class="note">الحفظ محلي على هذا المتصفح، ولا يربط حسابات المنصات تلقائيًا.</p></div>
+<h2 class="section-title">المشاريع المسجلة</h2><div id="projectList"></div>
 </section>
+
 <section id="settings" class="hidden">
- <h2>إعدادات الوكيل</h2><div class="card">
-  <label for="dailyGoal">عدد الفيديوهات المستهدف يوميًا</label><select class="field" id="dailyGoal"><option>1</option><option selected>2</option><option>3</option></select>
-  <label class="check"><input type="checkbox" id="notify" checked> تفعيل التنبيهات داخل اللوحة</label>
-  <label class="check"><input type="checkbox" id="review" checked> مراجعة المحتوى قبل النشر</label>
-  <button class="btn primary full" id="saveSettings">حفظ الإعدادات</button>
-  <p class="note">يتم حفظ هذه الإعدادات على هذا الجهاز فقط.</p>
- </div>
- <h2>حماية البيانات</h2><div class="card note">لا تحفظ كلمات مرور الحسابات أو رموز التحقق أو مفاتيح API داخل أسماء المشاريع أو الحسابات. استخدم التفويض الرسمي لكل منصة عند تنفيذ الربط.</div>
+<h2 class="section-title">إعدادات الوكيل</h2><div class="card">
+<label for="dailyGoal">عدد الفيديوهات المستهدف يوميًا</label><select class="field" id="dailyGoal"><option>1</option><option selected>2</option><option>3</option><option>4</option></select>
+<label><input type="checkbox" id="notify" checked> تفعيل التنبيهات داخل اللوحة</label>
+<label><input type="checkbox" id="review" checked> مراجعة المحتوى قبل النشر</label>
+<button class="btn primary full" id="saveSettings">حفظ الإعدادات</button>
+<p class="note">هذه تفضيلات للوحة فقط؛ لا تشغّل جدولة أو نشرًا في TikTok أو Metricool.</p></div>
+<h2 class="section-title">الوكلاء المتاحون</h2>
+<div id="agentsList"></div>
 </section>
-<section id="status" class="hidden">
- <h2>اتصال الخادم</h2><div class="card">
-  <div class="muted" id="connectionState">لم يتم اختبار الاتصال في هذه الجلسة.</div>
-  <label for="apiBase">عنوان الخادم</label><input class="field" id="apiBase" inputmode="url" placeholder="https://your-worker.workers.dev">
-  <label for="apiToken">رمز الخادم</label><input class="field" id="apiToken" type="password" placeholder="Bearer token">
-  <button class="btn primary full" id="testApi">اختبار الاتصال</button>
-  <p class="note">أدخل رابط Worker ورمز الوصول الحاليين. لا ترسل الرمز في المحادثة أو الصور. يُستخدم الرمز أثناء الاختبار فقط ولا يُحفظ.</p>
- </div>
- <div class="card note">نجاح الاتصال بالخادم لا يعني أن حسابات التواصل الاجتماعي أصبحت مربوطة. هذا اختبار API فقط.</div>
+
+<section id="connect" class="hidden">
+<h2 class="section-title">اتصال الخادم</h2><div class="card">
+<div id="connectionState" class="muted">لم يتم اختبار الاتصال في هذه الجلسة.</div>
+<label for="apiBase">عنوان الخادم</label><input class="field" id="apiBase" placeholder="https://your-worker.workers.dev" inputmode="url">
+<label for="apiToken">رمز الخادم (Bearer token)</label><input class="field" id="apiToken" placeholder="أدخل الرمز للاختبار فقط" type="password" autocomplete="off">
+<button class="btn primary full" id="testApi">اختبار الاتصال</button>
+<p class="note">الرمز لا يُحفظ. لا تدخل كلمة مرور TikTok هنا. نجاح اختبار API لا يعني تفويض حسابات التواصل الاجتماعي.</p></div>
+<div class="card"><b>حالة ربط المنصات</b><p class="muted">TikTok وFacebook وInstagram وYouTube: بانتظار التفويض الرسمي من كل منصة أو أداة نشر معتمدة.</p><span class="badge">النشر التلقائي غير مفعّل</span></div>
 </section>
-<footer>AI Agent Hub · MOBILE CONTROL CENTER</footer>
-</main>
+
+<section id="earnings" class="hidden">
+<h2 class="section-title">الأرباح والسحوبات</h2>
+<div class="card"><b>ملخص الأرباح</b><p class="note">الأرقام المسجلة يدويًا أو المستوردة من تقارير رسمية فقط. لا تُعرض أي قيمة على أنها رصيد فعلي إلا بعد توثيقها من المنصة.</p>
+<div class="stats">
+<div class="stat">💵<b id="earnedUSD">$0.00</b><span>إجمالي معتمد بالدولار</span></div>
+<div class="stat">🇪🇬<b id="earnedEGP">0.00 ج.م</b><span>إجمالي معتمد بالجنيه</span></div>
+<div class="stat">⏳<b id="pendingTotal">0</b><span>أرباح معلّقة (عدد السجلات)</span></div>
+<div class="stat">🏦<b id="availableTotal">0</b><span>سجلات جاهزة للسحب</span></div>
+<div class="stat"><b id="charityUSD">$0.00</b><span>الجزء المخصص لله (10%) بالدولار</span></div>
+<div class="stat"><b id="charityEGP">0.00 ج.م</b><span>الجزء المخصص لله (10%) بالجنيه</span></div>
+<div class="stat"><b id="netUSD">$0.00</b><span>المتبقي بعد التخصيص بالدولار</span></div>
+<div class="stat"><b id="netEGP">0.00 ج.م</b><span>المتبقي بعد التخصيص بالجنيه</span></div>
+</div></div>
+<div class="card"><b>تخصيص الجزء المخصص لله</b><p class="note">يُحسب تلقائيًا بنسبة 10% من كل سجل أرباح معتمد أو قابل للسحب أو تم استلامه. السجلات التقديرية لا تدخل في الحساب حتى يتم اعتمادها. التخصيص حسابي داخل اللوحة فقط، ولا ينفّذ تحويلًا ماليًا.</p></div>
+<h2 class="section-title">تسجيل أرباح أو دفعة</h2>
+<div class="card">
+<label for="earnProject">المشروع والحساب</label><select class="field" id="earnProject"></select>
+<label for="earnPlatform">المنصة</label><select class="field" id="earnPlatform"><option>TikTok</option><option>TikTok One – تعاونات العلامات التجارية</option><option>Facebook</option><option>Instagram</option><option>YouTube</option><option>أخرى</option></select>
+<p class="note">تمت إضافة TikTok One كمصدر مستقل لتسجيل أرباح التعاونات مع العلامات التجارية. الحساب جديد حاليًا؛ اتركه دون أرباح إلى أن تتحقق الأهلية وتبدأ حملات مدفوعة فعلية.</p>
+<label for="earnAmount">المبلغ</label><input class="field" id="earnAmount" type="number" min="0" step="0.01" placeholder="مثال: 125.50">
+<label for="earnCurrency">العملة</label><select class="field" id="earnCurrency"><option value="USD">دولار أمريكي (USD)</option><option value="EGP">جنيه مصري (EGP)</option></select>
+<label for="earnKind">حالة المبلغ</label><select class="field" id="earnKind"><option value="estimated">تقديري</option><option value="approved">معتمد</option><option value="available">قابل للسحب</option><option value="paid">تم استلامه</option></select>
+<label for="earnMethod">وسيلة الاستلام المسجلة</label><select class="field" id="earnMethod"><option>حساب بنكي</option><option>PayPal (إذا كانت المنصة تدعمه)</option><option>غير محددة بعد</option></select>
+<label for="earnDate">تاريخ التقرير أو الدفع</label><input class="field" id="earnDate" type="date">
+<label for="earnRef">مرجع العملية / ملاحظة (اختياري)</label><input class="field" id="earnRef" placeholder="رقم تقرير أو تحويل، بدون بيانات حساسة">
+<button class="btn primary full" id="saveEarning">حفظ السجل</button>
+</div>
+<h2 class="section-title">سجل الأرباح والمدفوعات</h2><div id="earningsList"></div>
+<div class="card note">وسيلة الاستلام تُحدد وتُدار داخل إعدادات الدفع الرسمية لكل منصة. هذه اللوحة تجمع السجلات والمتابعة فقط؛ لا تسحب الأموال ولا تغيّر بيانات البنك أو PayPal نيابةً عنك. لا تدخل رقم بطاقة أو كلمة مرور أو رمز تحقق هنا.</div>
+</section>
+
+<footer>AI Agent Hub · MOBILE CONTROL CENTER</footer></main>
+
+<div class="modal" id="accountModal"><div class="sheet">
+<h3>إضافة حساب للمشروع</h3><div id="modalProjectName" class="muted"></div>
+<label for="platform">المنصة</label><select id="platform" class="field"><option>TikTok</option><option>Facebook</option><option>Instagram</option><option>YouTube</option><option>أخرى</option></select>
+<label for="accountHandle">اسم الحساب أو رابطه العام</label><input id="accountHandle" class="field" placeholder="@username أو رابط الحساب" maxlength="180">
+<label for="accountPurpose">الغرض</label><select id="accountPurpose" class="field"><option>نشر محتوى</option><option>تحليل الأداء</option><option>إدارة المجتمع</option><option>إعلان وتسويق</option></select>
+<div class="row"><button class="btn primary" id="saveAccount">حفظ الحساب</button><button class="btn" id="closeModal">إغلاق</button></div>
+<p class="note">لا تطلب اللوحة كلمات المرور أو رموز التحقق. الحساب هنا سجل تنظيمي فقط.</p></div></div>
+
 <script>
+const STORE='ai-agent-hub-v2';
+const defaultData={projects:[{id:'toto-kids',name:'toto kids',type:'محتوى أطفال',desc:'فيديوهات أطفال',accounts:[]}],settings:{goal:'2',notify:true,review:true},logs:[],earnings:[]};
+let data;
+try{data=JSON.parse(localStorage.getItem(STORE))||defaultData}catch(e){data=defaultData}
+if(!Array.isArray(data.projects)) data=defaultData; if(!Array.isArray(data.earnings)) data.earnings=[];
+let selectedProject=null;
 const $=id=>document.getElementById(id);
-const KEY="aiHubProjects_v1", SETTINGS="aiHubSettings_v1";
-let projects=JSON.parse(localStorage.getItem(KEY)||"[]"), selectedProject=null;
-function save(){localStorage.setItem(KEY,JSON.stringify(projects));render()}
-function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function persist(){localStorage.setItem(STORE,JSON.stringify(data));render()}
+function log(message){data.logs.unshift({message,time:new Date().toLocaleString('ar-EG')});data.logs=data.logs.slice(0,12);localStorage.setItem(STORE,JSON.stringify(data))}
 function render(){
- $("projectCount").textContent=projects.length;
- $("accountCount").textContent=projects.reduce((n,p)=>n+(p.accounts||[]).length,0);
- const card=p=>`<div class="item"><div class="ico">📁</div><div class="item-main"><b>${escapeHTML(p.name)}</b><small>${escapeHTML(p.type)} · ${(p.accounts||[]).length} حساب</small>${p.desc?`<small>${escapeHTML(p.desc)}</small>`:""}</div><button class="btn small" data-add="${p.id}">＋ حساب</button><button class="btn small danger" data-del="${p.id}">حذف</button></div>`;
- $("projectsList").innerHTML=projects.length?projects.map(card).join(""):`<div class="empty">لا توجد مشاريع بعد. أضف أول مشروع من النموذج أعلاه.</div>`;
- $("homeProjects").innerHTML=projects.length?projects.slice(0,4).map(card).join(""):`<div class="empty">ابدأ بإضافة مشروعك الأول.</div>`;
- document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>openAccount(b.dataset.add));
- document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{if(confirm("هل تريد حذف المشروع وكل الحسابات المسجلة داخله؟")){projects=projects.filter(p=>p.id!==b.dataset.del);save()}});
+ $('projectCount').textContent=data.projects.length;
+ $('accountCount').textContent=data.projects.reduce((n,p)=>n+(p.accounts||[]).length,0);
+ const cards=data.projects.map(p=>projectCard(p)).join('')||'<div class="card empty">لا توجد مشاريع بعد.</div>';
+ $('projectList').innerHTML=cards;$('homeProjects').innerHTML=cards;
+ $('activityLog').innerHTML=(data.logs.length?data.logs.map(x=>`<div class="log"><span class="ok">●</span><span>${safe(x.message)} <small class="muted">${safe(x.time)}</small></span></div>`).join(''):'<div class="empty">لا يوجد نشاط بعد.</div>')+'<div class="log"><span class="warn">●</span><span>ربط المنصات والنشر الآلي يحتاج تفويضًا منفصلًا.</span></div>';
+ $('dailyGoal').value=data.settings.goal;$('notify').checked=data.settings.notify;$('review').checked=data.settings.review;
 }
-function tab(id){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));["home","projects","settings","status"].forEach(x=>$(x).classList.toggle("hidden",x!==id));window.scrollTo(0,0)}
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
-$("goProjects").onclick=()=>tab("projects");
-$("addProject").onclick=()=>{let name=$("projectName").value.trim();if(!name){alert("اكتب اسم المشروع أولًا.");return}projects.push({id:Date.now().toString(),name,type:$("projectType").value,desc:$("projectDesc").value.trim(),accounts:[]});$("projectName").value="";$("projectDesc").value="";save();alert("تم حفظ المشروع على هذا الجهاز.");};
-function openAccount(id){selectedProject=projects.find(p=>p.id===id);if(!selectedProject)return;$("selectedProjectName").textContent="المشروع: "+selectedProject.name;$("accountEditor").classList.remove("hidden");$("accountEditor").scrollIntoView({behavior:"smooth"})}
-$("closeAccount").onclick=()=>$("accountEditor").classList.add("hidden");
-$("addAccount").onclick=()=>{let label=$("accountLabel").value.trim();if(!label){alert("اكتب اسم الحساب أو رابطه العام.");return}selectedProject.accounts.push({id:Date.now().toString(),platform:$("platform").value,label,purpose:$("accountPurpose").value});$("accountLabel").value="";save();$("accountEditor").classList.add("hidden");alert("تم حفظ بيانات الحساب داخل المشروع.");};
-$("saveSettings").onclick=()=>{localStorage.setItem(SETTINGS,JSON.stringify({goal:$("dailyGoal").value,notify:$("notify").checked,review:$("review").checked}));alert("تم حفظ الإعدادات على هذا الجهاز.");};
-try{let s=JSON.parse(localStorage.getItem(SETTINGS)||"null");if(s){$("dailyGoal").value=s.goal;$("notify").checked=s.notify;$("review").checked=s.review}}catch(e){}
-$("testApi").onclick=async()=>{let base=$("apiBase").value.trim().replace(/\/+$/,""),token=$("apiToken").value.trim();if(!/^https:\/\//i.test(base)||!token){$("connectionState").textContent="أدخل رابط HTTPS ورمز الخادم.";return}$("connectionState").textContent="جارٍ اختبار الاتصال…";try{let r=await fetch(base+"/api/health",{headers:{Authorization:"Bearer "+token}});let data=await r.json();if(!r.ok||!data.ok)throw new Error("HTTP "+r.status+" — "+(data.error||"تعذر التأكيد"));$("connectionState").textContent="متصل بنجاح بالخادم · "+new Date().toLocaleString("ar-EG");$("systemStatus").textContent="الخادم متصل"}catch(e){$("connectionState").textContent="فشل الاختبار: "+e.message}}
-render();
-</script>
-</body></html>
+function projectCard(p){return `<div class="project"><div class="ico">📁</div><div class="grow"><strong>${safe(p.name)}</strong><small>${safe(p.type)} · ${(p.accounts||[]).length} حساب</small><small>${safe(p.desc||'بدون وصف')}</small></div><div class="row"><button class="btn" onclick="openAccounts('${p.id}')">الحسابات</button><button class="btn primary" onclick="addAccount('${p.id}')">＋ حساب</button><button class="btn danger" onclick="deleteProject('${p.id}')">حذف</button></div></div>${(p.accounts||[]).length?`<div class="card">${p.accounts.map(a=>`<div class="account"><div class="ico">${platformIcon(a.platform)}</div><div class="grow"><strong>${safe(a.platform)}</strong><small>${safe(a.handle)} · ${safe(a.purpose)}</small></div><button class="btn danger" onclick="deleteAccount('${p.id}','${a.id}')">حذف</button></div>`).join('')}</div>`:''}`}
+function platformIcon(p){return ({TikTok:'♪',Facebook:'f',Instagram:'◎',YouTube:'▶'})[p]||'🌐'}
+function switchTab(tab){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));['home','projects','settings','connect','earnings'].forEach(id=>$(id).classList.toggle('hidden',id!==tab));window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+$('homeAddProject').onclick=()=>switchTab('projects');
+$('saveProject').onclick=()=>{const name=$('projectName').value.trim();if(!name){alert('اكتب اسم المشروع أولًا.');return}if(data.projects.some(p=>p.name.toLowerCase()===name.toLowerCase())){alert('يوجد مشروع بنفس الاسم بالفعل.');return}data.projects.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),name,type:$('projectType').value,desc:$('projectDesc').value.trim(),accounts:[]});log('تم إنشاء المشروع: '+name);$('projectName').value='';$('projectDesc').value='';persist();alert('تم حفظ المشروع على هذا الجهاز.');};
+window.addAccount=id=>{selectedProject=id;const p=data.projects.find(x=>x.id===id);if(!p)return;$('modalProjectName').textContent='المشروع: '+p.name;$('accountHandle').value='';$('accountModal').classList.add('show')};
+window.openAccounts=id=>{const p=data.projects.find(x=>x.id===id);if(!p)return;alert(p.name+'\\n'+((p.accounts||[]).length?p.accounts.map(a=>a.platform+' — '+a.handle).join('\\n'):'لا توجد حسابات مسجلة.'))};
+$('closeModal').onclick=()=>$('accountModal').classList.remove('show');
+$('accountModal').addEventListener('click',e=>{if(e.target===$('accountModal'))$('accountModal').classList.remove('show')});
+$('saveAccount').onclick=()=>{const p=data.projects.find(x=>x.id===selectedProject),handle=$('accountHandle').value.trim(),platform=$('platform').value;if(!p)return;if(!handle){alert('اكتب اسم المستخدم أو الرابط العام.');return}const duplicate=p.accounts.some(a=>a.platform===platform&&a.handle.toLowerCase()===handle.toLowerCase());if(duplicate){alert('هذا الحساب مسجل بالفعل في المشروع؛ لم تتم إضافته مرة أخرى.');return}p.accounts.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),platform,handle,purpose:$('accountPurpose').value});log('تمت إضافة حساب '+platform+' إلى '+p.name);persist();$('accountModal').classList.remove('show');alert('تم حفظ سجل الحساب. هذا لا يعني ربط المنصة أو منح صلاحية النشر.')};
+window.deleteAccount=(pid,aid)=>{const p=data.projects.find(x=>x.id===pid);if(!p||!confirm('تأكيد حذف سجل الحساب من اللوحة؟'))return;p.accounts=p.accounts.filter(a=>a.id!==aid);log('تم حذف سجل حساب من '+p.name);persist()};
+window.deleteProject=id=>{const p=data.projects.find(x=>x.id===id);if(!p||!confirm('حذف المشروع وكل سجلات حساباته من هذا الجهاز؟'))return;data.projects=data.projects.filter(x=>x.id!==id);log('تم حذف المشروع: '+p.name);persist()};
+$('saveSettings').onclick=()=>{data.settings={goal:$('dailyGoal').value,notify:$('notify').checked,review:$('review').checked};persist();log('تم حفظ إعدادات اللوحة');alert('تم حفظ الإعدادات محليًا.')};
+const agents=[['💡','مدير المحتوى','تجهيز أفكار المحتوى','مساعد تخطيطي'],['✍️','كاتب السيناريو','كتابة الحوارات باللهجة المصرية','مساعد تخطيطي'],['🎬','استوديو الفيديو','تجهيز المشاهد والمونتاج','يحتاج أداة إنتاج'],['📤','مسؤول النشر','تنظيم خطة النشر','يحتاج تفويض منصة'],['📈','محلل الأداء','قراءة المشاهدات والتفاعل','يحتاج مصدر بيانات']];
+$('agentsList').innerHTML=agents.map(a=>`<div class="agent"><div class="ico">${a[0]}</div><div class="grow"><strong>${a[1]}</strong><small>${a[2]}</small></div><span class="state">${a[3]}</span></div>`).join('');
+$('testApi').onclick=async()=>{const base=$('apiBase').value.trim().replace(/\/+$/,''),token=$('apiToken').value.trim();if(!/^https:\/\//i.test(base)){ $('connectionState').textContent='أدخل رابط HTTPS صحيحًا.';return}if(!token){$('connectionState').textContent='أدخل رمز الخادم للاختبار.';return}$('connectionState').textContent='جارٍ اختبار الاتصال…';try{const r=await fetch(base+'/api/health',{headers:{Authorization:'Bearer '+token}});const body=await r.json().catch(()=>({}));if(!r.ok)throw Error('HTTP '+r.status+' — '+(body.error||'تعذر التحقق'));$('connectionState').textContent=body.ok?'متصل بالخادم بنجاح.':'استجابة الخادم لا تؤكد الجاهزية.'}catch(e){$('connectionState').textContent='فشل الاتصال: '+e.message+'؛ راجع الرابط والرمز وإعدادات CORS.'}};
+function money(v,c){return c==='USD'?'$'+Number(v||0).toFixed(2):Number(v||0).toFixed(2)+' ج.م'}
+function renderEarnings(){
+ const rows=Array.isArray(data.earnings)?data.earnings:[];
+ const eligible=rows.filter(x=>['approved','available','paid'].includes(x.kind));
+ const sum=(currency)=>eligible.filter(x=>x.currency===currency).reduce((n,x)=>n+Number(x.amount||0),0);
+ const usd=sum('USD'),egp=sum('EGP');
+ $('earnedUSD').textContent=money(usd,'USD');$('earnedEGP').textContent=money(egp,'EGP');
+ $('pendingTotal').textContent=rows.filter(x=>x.kind==='estimated').length;
+ $('availableTotal').textContent=rows.filter(x=>x.kind==='available').length;
+ $('charityUSD').textContent=money(usd*.10,'USD');$('charityEGP').textContent=money(egp*.10,'EGP');
+ $('netUSD').textContent=money(usd*.90,'USD');$('netEGP').textContent=money(egp*.90,'EGP');
+ const opts=data.projects.flatMap(p=>(p.accounts||[]).map(a=>({label:p.name+' — '+a.platform+' '+a.handle,value:p.id+'|'+a.id})));$('earnProject').innerHTML='<option value="">عام / غير مرتبط بحساب</option>'+opts.map(o=>`<option value="${safe(o.value)}">${safe(o.label)}</option>`).join('');
+ $('earningsList').innerHTML=rows.length?rows.slice().reverse().map(x=>{const amount=Number(x.amount||0),eligibleRow=['approved','available','paid'].includes(x.kind);const label={estimated:'تقديري',approved:'معتمد',available:'قابل للسحب',paid:'تم استلامه'}[x.kind]||x.kind;return `<div class="card"><div class="row"><b>${safe(x.platform||'—')} · ${money(amount,x.currency)}</b><span class="badge">${label}</span></div><p class="note">${safe(x.date||'بدون تاريخ')} · ${safe(x.method||'')}</p>${eligibleRow?`<p>الجزء المخصص لله (10%): <b>${money(amount*.10,x.currency)}</b></p><p>المتبقي بعد التخصيص: <b>${money(amount*.90,x.currency)}</b></p>`:'<p class="note">لن يُحسب التخصيص قبل اعتماد الأرباح.</p>'}${x.ref?`<small>${safe(x.ref)}</small>`:''}<button class="btn danger" onclick="deleteEarning('${x.id}')">حذف السجل</button></div>`}).join(''):'<div class="card empty">لا توجد سجلات أرباح حتى الآن.</div>';
+}
+$('saveEarning').onclick=()=>{const amount=Number($('earnAmount').value);if(!Number.isFinite(amount)||amount<=0){alert('اكتب مبلغًا صحيحًا أكبر من صفر.');return}const project=$('earnProject').value;data.earnings.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),project,platform:$('earnPlatform').value,amount,currency:$('earnCurrency').value,kind:$('earnKind').value,method:$('earnMethod').value,date:$('earnDate').value,ref:$('earnRef').value.trim()});localStorage.setItem(STORE,JSON.stringify(data));$('earnAmount').value='';$('earnRef').value='';renderEarnings();alert('تم حفظ سجل الأرباح وحساب الجزء المخصص تلقائيًا إذا كانت الحالة معتمدة أو قابلة للسحب أو تم استلامه.')};
+window.deleteEarning=id=>{if(!confirm('تأكيد حذف سجل الأرباح؟'))return;data.earnings=data.earnings.filter(x=>x.id!==id);localStorage.setItem(STORE,JSON.stringify(data));renderEarnings()};
+render();renderEarnings();
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script></body></html>
