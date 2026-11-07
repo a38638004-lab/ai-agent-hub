@@ -4,97 +4,102 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101827">
-<meta name="description" content="Toto AI - منصة موحدة لإدارة الحسابات والمشاريع بالذكاء الاصطناعي">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<meta name="apple-mobile-web-app-capable" content="yes">
 <title>AI Agent Hub</title>
 <style>
-:root{--bg:#101827;--panel:#1b2a3e;--panel2:#24364d;--text:#f7f9fc;--muted:#a9bad0;--mint:#55d6a5;--gold:#f4d35e;--blue:#65b8ff;--purple:#b79cff}
+:root{--bg:#101827;--panel:#1b2a3e;--panel2:#24364d;--text:#f7f9fc;--muted:#a9bad0;--mint:#55d6a5;--gold:#f4d35e;--red:#ff8e8e}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#101827,#14243a 60%,#101827);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
-.app{max-width:520px;margin:auto;padding:18px 15px 34px}.top{display:flex;align-items:center;justify-content:space-between;margin:6px 0 18px}.brand{display:flex;gap:11px;align-items:center}.rabbit{width:48px;height:48px;border-radius:15px;background:#29425f;display:grid;place-items:center;font-size:28px}.brand h1{font-size:20px;margin:0;letter-spacing:.4px}.brand small{color:var(--muted)}.pill{font-size:11px;border:1px solid #42614f;color:var(--mint);padding:6px 9px;border-radius:30px}
-.card{background:var(--panel);border:1px solid #2a3b52;border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 10px 25px #0002}.hero{background:linear-gradient(135deg,#203a54,#1b2a3e);display:flex;justify-content:space-between;align-items:center}.muted{color:var(--muted);font-size:13px}.status{font-size:22px;font-weight:750;margin:4px 0}.orb{width:55px;height:55px;border-radius:50%;display:grid;place-items:center;background:#174b3c;font-size:26px}.btn{border:0;border-radius:13px;padding:12px 14px;background:#315477;color:white;font-weight:700;font-size:14px;cursor:pointer}.btn.primary{background:#267a60}.btn.full{width:100%;margin-top:12px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:var(--panel);border:1px solid #2a3b52;border-radius:17px;padding:14px}.stat b{display:block;font-size:22px;margin:6px 0}.stat span{color:var(--muted);font-size:12px}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:17px 0}.tab{background:#1b2a3e;border:1px solid #2a3b52;color:var(--muted);border-radius:12px;padding:10px 3px;font-size:12px}.tab.active{background:#315477;color:white;border-color:#5685ad}.section-title{font-size:17px;margin:18px 2px 10px}.agent{display:flex;align-items:center;gap:11px;background:var(--panel);border:1px solid #2a3b52;border-radius:15px;padding:12px;margin:8px 0}.ico{width:39px;height:39px;background:var(--panel2);border-radius:12px;display:grid;place-items:center;font-size:20px}.agent strong{font-size:14px}.agent small{display:block;color:var(--muted);margin-top:3px;font-size:11px}.state{margin-right:auto;font-size:11px;color:var(--gold);max-width:100px;text-align:left}.log{display:flex;gap:10px;margin:12px 0;font-size:13px}.ok{color:var(--mint)}.warn{color:var(--gold)}.hidden{display:none}.field{width:100%;padding:12px;border-radius:12px;border:1px solid #40536c;background:#101827;color:white;margin-top:8px}.note{font-size:11px;line-height:1.6;color:var(--muted)}footer{text-align:center;color:#8195ad;font-size:10px;margin-top:22px}
+.app{max-width:650px;margin:auto;padding:16px 14px 34px}.top{display:flex;align-items:center;justify-content:space-between;margin:6px 0 16px}.brand{display:flex;gap:10px;align-items:center}.robot{width:48px;height:48px;border-radius:15px;background:#29425f;display:grid;place-items:center;font-size:27px}.brand h1{font-size:20px;margin:0}.brand small,.muted,.note{color:var(--muted)}.brand small{font-size:11px}.pill{font-size:11px;border:1px solid #42614f;color:var(--mint);padding:6px 9px;border-radius:30px}
+.card{background:var(--panel);border:1px solid #2a3b52;border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 10px 25px #0002}.hero{background:linear-gradient(135deg,#203a54,#1b2a3e);display:flex;justify-content:space-between;align-items:center}.status{font-size:22px;font-weight:750;margin:5px 0}.orb{width:55px;height:55px;border-radius:50%;display:grid;place-items:center;background:#174b3c;font-size:26px}
+.btn{border:0;border-radius:13px;padding:12px 14px;background:#315477;color:white;font-weight:700;font-size:14px;cursor:pointer}.btn.primary{background:#267a60}.btn.danger{background:#793e4a}.btn.full{width:100%;margin-top:10px}.btn.small{padding:8px 10px;font-size:12px}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:16px 0}.tab{background:#1b2a3e;border:1px solid #2a3b52;color:var(--muted);border-radius:12px;padding:11px 3px;font-size:13px}.tab.active{background:#315477;color:white;border-color:#5685ad}
+h2{font-size:18px;margin:18px 2px 10px}.field{width:100%;padding:12px;border-radius:12px;border:1px solid #40536c;background:#101827;color:white;margin:7px 0 12px;font:inherit}.field::placeholder{color:#8294aa}.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:var(--panel);border:1px solid #2a3b52;border-radius:16px;padding:13px}.stat b{display:block;font-size:20px;margin:5px 0}.stat span{font-size:12px;color:var(--muted)}
+.item{display:flex;align-items:center;gap:10px;background:#17263a;border:1px solid #2a3b52;border-radius:14px;padding:11px;margin:8px 0}.ico{width:40px;height:40px;border-radius:12px;background:var(--panel2);display:grid;place-items:center;font-size:20px;flex:none}.item-main{min-width:0;flex:1}.item-main b{display:block}.item-main small{display:block;color:var(--muted);font-size:12px;margin-top:3px}.tag{font-size:11px;color:var(--gold);white-space:nowrap}
+.hidden{display:none!important}.note{font-size:12px;line-height:1.7}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.check{display:flex;gap:10px;align-items:center;margin:13px 0}.check input{width:19px;height:19px}
+.empty{padding:18px;text-align:center;color:var(--muted);border:1px dashed #40536c;border-radius:14px}.danger-text{color:var(--red)}footer{text-align:center;color:#8195ad;font-size:10px;margin-top:22px}
 </style>
 </head>
 <body>
 <main class="app">
-<header class="top"><div class="brand"><div class="rabbit">🤖</div><div><h1>AI Agent Hub</h1><small>ALL-IN-ONE CONTROL CENTER</small></div></div><span class="pill">AI HUB</span></header>
-<section class="card hero"><div><div class="muted">حالة النظام</div><div class="status" id="agentStatus">جاهز للعمل</div><div class="muted">كل الحسابات والمشاريع من مكان واحد</div></div><div class="orb">✦</div></section>
-<button class="btn full" id="toggleAgent">إيقاف عرض حالة التشغيل</button>
-<section class="card" id="connectionCard">
- <b>اتصال الخادم</b>
- <p class="muted" id="connectionState">غير متصل — أدخل عنوان الخادم بعد استضافته</p>
- <input class="field" id="apiBase" placeholder="https://api.example.com" inputmode="url">
- <input class="field" id="apiToken" placeholder="رمز الاتصال (يُحفظ على هذا الجهاز فقط)" type="password">
- <button class="btn primary full" id="testApi">اختبار الاتصال</button>
- <p class="note">لا تضع كلمة مرور TikTok هنا. هذا الربط يختبر خادم TOTO فقط؛ ربط TikTok وMetricool يحتاج تفويضًا رسميًا منفصلًا.</p>
-</section>
-<div class="stats">
- <div class="stat">🎬<b id="goalNum">2</b><span>فيديو مستهدف يوميًا</span></div>
- <div class="stat">🕗<b>08:00</b><span>موعد تجهيز المحتوى</span></div>
- <div class="stat">📱<b>متعدد</b><span>حسابات ومنصات</span></div>
- <div class="stat">☁️<b>غير مربوط</b><span>البيانات الحية</span></div>
+<header class="top"><div class="brand"><div class="robot">🤖</div><div><h1>AI Agent Hub</h1><small>ALL-IN-ONE CONTROL CENTER</small></div></div><span class="pill">نسخة تشغيلية أولية</span></header>
+<section class="card hero"><div><div class="muted">حالة النظام</div><div class="status" id="systemStatus">جاهز للإعداد</div><div class="muted">إدارة مشاريعك وحساباتك من مكان واحد</div></div><div class="orb">✦</div></section>
+<div class="grid">
+ <div class="stat">📁<b id="projectCount">0</b><span>مشاريع محفوظة</span></div>
+ <div class="stat">🔗<b id="accountCount">0</b><span>حسابات مضافة</span></div>
 </div>
 <nav class="tabs">
- <button class="tab active" data-tab="home">الرئيسية</button><button class="tab" data-tab="agents">الوكيل</button><button class="tab" data-tab="publish">النشر</button><button class="tab" data-tab="reports">التقارير</button>
+ <button class="tab active" data-tab="home">الرئيسية</button><button class="tab" data-tab="projects">المشاريع</button><button class="tab" data-tab="settings">الإعدادات</button><button class="tab" data-tab="status">الاتصال</button>
 </nav>
 <section id="home">
-<h2 class="section-title">مركز العمليات</h2>
-<div id="agentsList"></div>
-<h2 class="section-title">سجل النشاط</h2>
-<div class="card">
- <div class="log"><span class="ok">●</span><span>تم إنشاء مهمة تجهيز المحتوى اليومية — فيديوهان.</span></div>
- <div class="log"><span class="ok">●</span><span>تم تجهيز مساحة المشاريع والحسابات.</span></div>
- <div class="log"><span class="warn">●</span><span>ربط المنصات والتحليلات الحية ما زال مطلوبًا.</span></div>
-</div>
+ <h2>مركز العمليات</h2>
+ <div class="card"><b>ابدأ من هنا</b><p class="muted">أنشئ مشروعًا، ثم أضف الحسابات التي تريد إدارتها. إضافة الحساب هنا تحفظ بياناته التنظيمية فقط ولا تمنح صلاحية الدخول للمنصة.</p><button class="btn primary full" id="goProjects">＋ إضافة مشروع</button></div>
+ <h2>المشاريع الحالية</h2><div id="homeProjects"></div>
+ <h2>تنبيه مهم</h2><div class="card note">هذه النسخة تدير قائمة المشاريع والحسابات محليًا على جهازك. النشر التلقائي والتحليلات الحية وربط TikTok وInstagram وFacebook وYouTube تحتاج تفويضًا رسميًا وربط API منفصلًا. لا تضع كلمات المرور أو أكواد التحقق هنا.</div>
 </section>
-<section id="agents" class="hidden">
-<h2 class="section-title">إعدادات الوكيل</h2><div class="card">
-<label>عدد الفيديوهات يوميًا</label><select id="dailyGoal" class="field"><option>1</option><option selected>2</option><option>3</option></select>
-<label style="display:block;margin-top:15px"><input type="checkbox" id="notify" checked> تفعيل التنبيهات داخل اللوحة</label>
-<label style="display:block;margin-top:15px"><input type="checkbox" id="review" checked> مراجعة أول فيديو قبل النشر التلقائي</label>
-<button class="btn primary full" id="saveSettings">حفظ الإعدادات</button><p class="note">الإعدادات هنا محلية على هذا الجهاز، ولا تغيّر إعدادات Metricool أو TikTok تلقائيًا.</p>
-</div>
-<h2 class="section-title">المشاريع</h2><div class="card"><div style="font-size:42px">🤖</div><b>مساحة المشاريع</b><p class="muted">أضف مشاريعك وحساباتك المختلفة وتابعها من لوحة تحكم واحدة.</p></div>
+<section id="projects" class="hidden">
+ <h2>إضافة مشروع جديد</h2>
+ <div class="card">
+  <label for="projectName">اسم المشروع</label><input class="field" id="projectName" placeholder="مثال: توتو للأطفال">
+  <label for="projectType">نوع المشروع</label><select class="field" id="projectType"><option>محتوى أطفال</option><option>تسويق مطعم</option><option>متجر إلكتروني</option><option>مشروع آخر</option></select>
+  <label for="projectDesc">وصف مختصر</label><textarea class="field" id="projectDesc" rows="2" placeholder="هدف المشروع ونوع المحتوى..."></textarea>
+  <button class="btn primary full" id="addProject">حفظ المشروع</button>
+ </div>
+ <h2>المشاريع المسجلة</h2><div id="projectsList"></div>
+ <div id="accountEditor" class="card hidden">
+  <h2 style="margin-top:0">إضافة حساب للمشروع</h2><div class="muted" id="selectedProjectName"></div>
+  <label for="platform">المنصة</label><select class="field" id="platform"><option>TikTok</option><option>Facebook</option><option>Instagram</option><option>YouTube</option><option>أخرى</option></select>
+  <label for="accountLabel">اسم الحساب أو رابطه العام</label><input class="field" id="accountLabel" placeholder="@username أو رابط الحساب">
+  <label for="accountPurpose">الغرض</label><select class="field" id="accountPurpose"><option>نشر محتوى</option><option>تسويق وإعلانات</option><option>متابعة وتحليلات</option></select>
+  <button class="btn primary full" id="addAccount">حفظ الحساب</button>
+  <button class="btn full" id="closeAccount">إغلاق</button>
+ </div>
 </section>
-<section id="publish" class="hidden">
-<h2 class="section-title">مركز النشر</h2><div class="card"><b>الحسابات والمنصات</b><p class="muted">تمت تجربة نشر فيديو وظهر على الحساب حسب التحقق اليدوي السابق.</p><span class="pill">الجدولة الدورية غير مؤكدة</span><p class="note">لا يوجد اتصال مباشر حاليًا بـ Metricool من هذه النسخة. لن تعرض حالة نشر مزيفة أو ترسل منشورات.</p></div>
+<section id="settings" class="hidden">
+ <h2>إعدادات الوكيل</h2><div class="card">
+  <label for="dailyGoal">عدد الفيديوهات المستهدف يوميًا</label><select class="field" id="dailyGoal"><option>1</option><option selected>2</option><option>3</option></select>
+  <label class="check"><input type="checkbox" id="notify" checked> تفعيل التنبيهات داخل اللوحة</label>
+  <label class="check"><input type="checkbox" id="review" checked> مراجعة المحتوى قبل النشر</label>
+  <button class="btn primary full" id="saveSettings">حفظ الإعدادات</button>
+  <p class="note">يتم حفظ هذه الإعدادات على هذا الجهاز فقط.</p>
+ </div>
+ <h2>حماية البيانات</h2><div class="card note">لا تحفظ كلمات مرور الحسابات أو رموز التحقق أو مفاتيح API داخل أسماء المشاريع أو الحسابات. استخدم التفويض الرسمي لكل منصة عند تنفيذ الربط.</div>
 </section>
-<section id="reports" class="hidden">
-<h2 class="section-title">تقارير الأداء</h2><div class="card"><div style="font-size:34px">📊</div><b>بانتظار ربط التحليلات</b><p class="muted">المشاهدات والإعجابات والتعليقات والمتابعون ستظهر عند إضافة مصدر بيانات موثوق.</p></div>
+<section id="status" class="hidden">
+ <h2>اتصال الخادم</h2><div class="card">
+  <div class="muted" id="connectionState">لم يتم اختبار الاتصال في هذه الجلسة.</div>
+  <label for="apiBase">عنوان الخادم</label><input class="field" id="apiBase" inputmode="url" placeholder="https://your-worker.workers.dev">
+  <label for="apiToken">رمز الخادم</label><input class="field" id="apiToken" type="password" placeholder="Bearer token">
+  <button class="btn primary full" id="testApi">اختبار الاتصال</button>
+  <p class="note">أدخل رابط Worker ورمز الوصول الحاليين. لا ترسل الرمز في المحادثة أو الصور. يُستخدم الرمز أثناء الاختبار فقط ولا يُحفظ.</p>
+ </div>
+ <div class="card note">نجاح الاتصال بالخادم لا يعني أن حسابات التواصل الاجتماعي أصبحت مربوطة. هذا اختبار API فقط.</div>
 </section>
-<footer>AI Agent Hub · MOBILE CONTROL CENTER · STARTER BUILD</footer>
+<footer>AI Agent Hub · MOBILE CONTROL CENTER</footer>
 </main>
 <script>
-const agents=[["💡","مدير المحتوى","تجهيز أفكار قصص توتو","مجدول يوميًا"],["✍️","كاتب السيناريو","كتابة الحوارات باللهجة المصرية","بانتظار الدفعة"],["🎬","استوديو الفيديو","إنتاج المشاهد والمونتاج","غير متصل"],["📤","مسؤول النشر","جدولة TikTok عبر Metricool","ربط البيانات مطلوب"],["📈","محلل الأداء","قراءة المشاهدات والتفاعل","بانتظار الربط"]];
-document.getElementById("agentsList").innerHTML=agents.map(a=>`<div class="agent"><div class="ico">${a[0]}</div><div><strong>${a[1]}</strong><small>${a[2]}</small></div><div class="state">${a[3]}</div></div>`).join("");
-const apiBaseInput = document.getElementById("apiBase");
-const apiTokenInput = document.getElementById("apiToken");
-const connectionState = document.getElementById("connectionState");
-document.getElementById("testApi").onclick = async () => {
-  const base = apiBaseInput.value.trim().replace(/\/$/, "");
-  const token = apiTokenInput.value;
-  if (!base || !/^https:\/\//i.test(base) || !token) {
-    connectionState.textContent = "أدخل رابط HTTPS ورمز الخادم أولًا.";
-    return;
-  }
-  connectionState.textContent = "جارٍ اختبار الاتصال…";
-  try {
-    const response = await fetch(base + "/api/health", {
-      headers: { Authorization: "Bearer " + token }
-    });
-    if (!response.ok) throw new Error("HTTP " + response.status);
-    const result = await response.json();
-    if (!result.ok) throw new Error("الخادم لم يؤكد الجاهزية");
-    connectionState.textContent = "متصل بخادم AI Agent Hub — " + new Date(result.time).toLocaleString("ar-EG");
-  } catch (error) {
-    connectionState.textContent = "فشل الاتصال: " + error.message;
-  }
-};
-let running=true;
-document.getElementById("toggleAgent").onclick=()=>{running=!running;document.getElementById("agentStatus").textContent=running?"جاهز للعمل":"متوقف مؤقتًا";document.getElementById("toggleAgent").textContent=running?"إيقاف عرض حالة التشغيل":"تفعيل عرض حالة التشغيل";};
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");["home","agents","publish","reports"].forEach(id=>document.getElementById(id).classList.toggle("hidden",id!==b.dataset.tab));});
-document.getElementById("saveSettings").onclick=()=>{document.getElementById("goalNum").textContent=document.getElementById("dailyGoal").value;alert("تم حفظ إعدادات العرض على هذا الجهاز.");};
-if("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("./sw.js").catch(()=>{});
+const $=id=>document.getElementById(id);
+const KEY="aiHubProjects_v1", SETTINGS="aiHubSettings_v1";
+let projects=JSON.parse(localStorage.getItem(KEY)||"[]"), selectedProject=null;
+function save(){localStorage.setItem(KEY,JSON.stringify(projects));render()}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function render(){
+ $("projectCount").textContent=projects.length;
+ $("accountCount").textContent=projects.reduce((n,p)=>n+(p.accounts||[]).length,0);
+ const card=p=>`<div class="item"><div class="ico">📁</div><div class="item-main"><b>${escapeHTML(p.name)}</b><small>${escapeHTML(p.type)} · ${(p.accounts||[]).length} حساب</small>${p.desc?`<small>${escapeHTML(p.desc)}</small>`:""}</div><button class="btn small" data-add="${p.id}">＋ حساب</button><button class="btn small danger" data-del="${p.id}">حذف</button></div>`;
+ $("projectsList").innerHTML=projects.length?projects.map(card).join(""):`<div class="empty">لا توجد مشاريع بعد. أضف أول مشروع من النموذج أعلاه.</div>`;
+ $("homeProjects").innerHTML=projects.length?projects.slice(0,4).map(card).join(""):`<div class="empty">ابدأ بإضافة مشروعك الأول.</div>`;
+ document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>openAccount(b.dataset.add));
+ document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{if(confirm("هل تريد حذف المشروع وكل الحسابات المسجلة داخله؟")){projects=projects.filter(p=>p.id!==b.dataset.del);save()}});
+}
+function tab(id){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));["home","projects","settings","status"].forEach(x=>$(x).classList.toggle("hidden",x!==id));window.scrollTo(0,0)}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+$("goProjects").onclick=()=>tab("projects");
+$("addProject").onclick=()=>{let name=$("projectName").value.trim();if(!name){alert("اكتب اسم المشروع أولًا.");return}projects.push({id:Date.now().toString(),name,type:$("projectType").value,desc:$("projectDesc").value.trim(),accounts:[]});$("projectName").value="";$("projectDesc").value="";save();alert("تم حفظ المشروع على هذا الجهاز.");};
+function openAccount(id){selectedProject=projects.find(p=>p.id===id);if(!selectedProject)return;$("selectedProjectName").textContent="المشروع: "+selectedProject.name;$("accountEditor").classList.remove("hidden");$("accountEditor").scrollIntoView({behavior:"smooth"})}
+$("closeAccount").onclick=()=>$("accountEditor").classList.add("hidden");
+$("addAccount").onclick=()=>{let label=$("accountLabel").value.trim();if(!label){alert("اكتب اسم الحساب أو رابطه العام.");return}selectedProject.accounts.push({id:Date.now().toString(),platform:$("platform").value,label,purpose:$("accountPurpose").value});$("accountLabel").value="";save();$("accountEditor").classList.add("hidden");alert("تم حفظ بيانات الحساب داخل المشروع.");};
+$("saveSettings").onclick=()=>{localStorage.setItem(SETTINGS,JSON.stringify({goal:$("dailyGoal").value,notify:$("notify").checked,review:$("review").checked}));alert("تم حفظ الإعدادات على هذا الجهاز.");};
+try{let s=JSON.parse(localStorage.getItem(SETTINGS)||"null");if(s){$("dailyGoal").value=s.goal;$("notify").checked=s.notify;$("review").checked=s.review}}catch(e){}
+$("testApi").onclick=async()=>{let base=$("apiBase").value.trim().replace(/\/+$/,""),token=$("apiToken").value.trim();if(!/^https:\/\//i.test(base)||!token){$("connectionState").textContent="أدخل رابط HTTPS ورمز الخادم.";return}$("connectionState").textContent="جارٍ اختبار الاتصال…";try{let r=await fetch(base+"/api/health",{headers:{Authorization:"Bearer "+token}});let data=await r.json();if(!r.ok||!data.ok)throw new Error("HTTP "+r.status+" — "+(data.error||"تعذر التأكيد"));$("connectionState").textContent="متصل بنجاح بالخادم · "+new Date().toLocaleString("ar-EG");$("systemStatus").textContent="الخادم متصل"}catch(e){$("connectionState").textContent="فشل الاختبار: "+e.message}}
+render();
 </script>
 </body></html>
