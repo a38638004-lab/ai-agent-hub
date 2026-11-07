@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<meta name="description" content="Toto AI - منصة موحدة لإدارة الحسابات والمشاريع بالذكاء الاصطناعي">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>AI Agent Hub</title>
+<style>
+:root{--bg:#101827;--panel:#1b2a3e;--panel2:#24364d;--text:#f7f9fc;--muted:#a9bad0;--mint:#55d6a5;--gold:#f4d35e;--blue:#65b8ff;--purple:#b79cff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#101827,#14243a 60%,#101827);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+.app{max-width:520px;margin:auto;padding:18px 15px 34px}.top{display:flex;align-items:center;justify-content:space-between;margin:6px 0 18px}.brand{display:flex;gap:11px;align-items:center}.rabbit{width:48px;height:48px;border-radius:15px;background:#29425f;display:grid;place-items:center;font-size:28px}.brand h1{font-size:20px;margin:0;letter-spacing:.4px}.brand small{color:var(--muted)}.pill{font-size:11px;border:1px solid #42614f;color:var(--mint);padding:6px 9px;border-radius:30px}
+.card{background:var(--panel);border:1px solid #2a3b52;border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 10px 25px #0002}.hero{background:linear-gradient(135deg,#203a54,#1b2a3e);display:flex;justify-content:space-between;align-items:center}.muted{color:var(--muted);font-size:13px}.status{font-size:22px;font-weight:750;margin:4px 0}.orb{width:55px;height:55px;border-radius:50%;display:grid;place-items:center;background:#174b3c;font-size:26px}.btn{border:0;border-radius:13px;padding:12px 14px;background:#315477;color:white;font-weight:700;font-size:14px;cursor:pointer}.btn.primary{background:#267a60}.btn.full{width:100%;margin-top:12px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:var(--panel);border:1px solid #2a3b52;border-radius:17px;padding:14px}.stat b{display:block;font-size:22px;margin:6px 0}.stat span{color:var(--muted);font-size:12px}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:17px 0}.tab{background:#1b2a3e;border:1px solid #2a3b52;color:var(--muted);border-radius:12px;padding:10px 3px;font-size:12px}.tab.active{background:#315477;color:white;border-color:#5685ad}.section-title{font-size:17px;margin:18px 2px 10px}.agent{display:flex;align-items:center;gap:11px;background:var(--panel);border:1px solid #2a3b52;border-radius:15px;padding:12px;margin:8px 0}.ico{width:39px;height:39px;background:var(--panel2);border-radius:12px;display:grid;place-items:center;font-size:20px}.agent strong{font-size:14px}.agent small{display:block;color:var(--muted);margin-top:3px;font-size:11px}.state{margin-right:auto;font-size:11px;color:var(--gold);max-width:100px;text-align:left}.log{display:flex;gap:10px;margin:12px 0;font-size:13px}.ok{color:var(--mint)}.warn{color:var(--gold)}.hidden{display:none}.field{width:100%;padding:12px;border-radius:12px;border:1px solid #40536c;background:#101827;color:white;margin-top:8px}.note{font-size:11px;line-height:1.6;color:var(--muted)}footer{text-align:center;color:#8195ad;font-size:10px;margin-top:22px}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="top"><div class="brand"><div class="rabbit">🤖</div><div><h1>AI Agent Hub</h1><small>ALL-IN-ONE CONTROL CENTER</small></div></div><span class="pill">AI HUB</span></header>
+<section class="card hero"><div><div class="muted">حالة النظام</div><div class="status" id="agentStatus">جاهز للعمل</div><div class="muted">كل الحسابات والمشاريع من مكان واحد</div></div><div class="orb">✦</div></section>
+<button class="btn full" id="toggleAgent">إيقاف عرض حالة التشغيل</button>
+<section class="card" id="connectionCard">
+ <b>اتصال الخادم</b>
+ <p class="muted" id="connectionState">غير متصل — أدخل عنوان الخادم بعد استضافته</p>
+ <input class="field" id="apiBase" placeholder="https://api.example.com" inputmode="url">
+ <input class="field" id="apiToken" placeholder="رمز الاتصال (يُحفظ على هذا الجهاز فقط)" type="password">
+ <button class="btn primary full" id="testApi">اختبار الاتصال</button>
+ <p class="note">لا تضع كلمة مرور TikTok هنا. هذا الربط يختبر خادم TOTO فقط؛ ربط TikTok وMetricool يحتاج تفويضًا رسميًا منفصلًا.</p>
+</section>
+<div class="stats">
+ <div class="stat">🎬<b id="goalNum">2</b><span>فيديو مستهدف يوميًا</span></div>
+ <div class="stat">🕗<b>08:00</b><span>موعد تجهيز المحتوى</span></div>
+ <div class="stat">📱<b>متعدد</b><span>حسابات ومنصات</span></div>
+ <div class="stat">☁️<b>غير مربوط</b><span>البيانات الحية</span></div>
+</div>
+<nav class="tabs">
+ <button class="tab active" data-tab="home">الرئيسية</button><button class="tab" data-tab="agents">الوكيل</button><button class="tab" data-tab="publish">النشر</button><button class="tab" data-tab="reports">التقارير</button>
+</nav>
+<section id="home">
+<h2 class="section-title">مركز العمليات</h2>
+<div id="agentsList"></div>
+<h2 class="section-title">سجل النشاط</h2>
+<div class="card">
+ <div class="log"><span class="ok">●</span><span>تم إنشاء مهمة تجهيز المحتوى اليومية — فيديوهان.</span></div>
+ <div class="log"><span class="ok">●</span><span>تم تجهيز مساحة المشاريع والحسابات.</span></div>
+ <div class="log"><span class="warn">●</span><span>ربط المنصات والتحليلات الحية ما زال مطلوبًا.</span></div>
+</div>
+</section>
+<section id="agents" class="hidden">
+<h2 class="section-title">إعدادات الوكيل</h2><div class="card">
+<label>عدد الفيديوهات يوميًا</label><select id="dailyGoal" class="field"><option>1</option><option selected>2</option><option>3</option></select>
+<label style="display:block;margin-top:15px"><input type="checkbox" id="notify" checked> تفعيل التنبيهات داخل اللوحة</label>
+<label style="display:block;margin-top:15px"><input type="checkbox" id="review" checked> مراجعة أول فيديو قبل النشر التلقائي</label>
+<button class="btn primary full" id="saveSettings">حفظ الإعدادات</button><p class="note">الإعدادات هنا محلية على هذا الجهاز، ولا تغيّر إعدادات Metricool أو TikTok تلقائيًا.</p>
+</div>
+<h2 class="section-title">المشاريع</h2><div class="card"><div style="font-size:42px">🤖</div><b>مساحة المشاريع</b><p class="muted">أضف مشاريعك وحساباتك المختلفة وتابعها من لوحة تحكم واحدة.</p></div>
+</section>
+<section id="publish" class="hidden">
+<h2 class="section-title">مركز النشر</h2><div class="card"><b>الحسابات والمنصات</b><p class="muted">تمت تجربة نشر فيديو وظهر على الحساب حسب التحقق اليدوي السابق.</p><span class="pill">الجدولة الدورية غير مؤكدة</span><p class="note">لا يوجد اتصال مباشر حاليًا بـ Metricool من هذه النسخة. لن تعرض حالة نشر مزيفة أو ترسل منشورات.</p></div>
+</section>
+<section id="reports" class="hidden">
+<h2 class="section-title">تقارير الأداء</h2><div class="card"><div style="font-size:34px">📊</div><b>بانتظار ربط التحليلات</b><p class="muted">المشاهدات والإعجابات والتعليقات والمتابعون ستظهر عند إضافة مصدر بيانات موثوق.</p></div>
+</section>
+<footer>AI Agent Hub · MOBILE CONTROL CENTER · STARTER BUILD</footer>
+</main>
+<script>
+const agents=[["💡","مدير المحتوى","تجهيز أفكار قصص توتو","مجدول يوميًا"],["✍️","كاتب السيناريو","كتابة الحوارات باللهجة المصرية","بانتظار الدفعة"],["🎬","استوديو الفيديو","إنتاج المشاهد والمونتاج","غير متصل"],["📤","مسؤول النشر","جدولة TikTok عبر Metricool","ربط البيانات مطلوب"],["📈","محلل الأداء","قراءة المشاهدات والتفاعل","بانتظار الربط"]];
+document.getElementById("agentsList").innerHTML=agents.map(a=>`<div class="agent"><div class="ico">${a[0]}</div><div><strong>${a[1]}</strong><small>${a[2]}</small></div><div class="state">${a[3]}</div></div>`).join("");
+const apiBaseInput = document.getElementById("apiBase");
+const apiTokenInput = document.getElementById("apiToken");
+const connectionState = document.getElementById("connectionState");
+document.getElementById("testApi").onclick = async () => {
+  const base = apiBaseInput.value.trim().replace(/\\/$/, "");
+  const token = apiTokenInput.value;
+  if (!base || !/^https:\\/\\//i.test(base) || !token) {
+    connectionState.textContent = "أدخل رابط HTTPS ورمز الخادم أولًا.";
+    return;
+  }
+  connectionState.textContent = "جارٍ اختبار الاتصال…";
+  try {
+    const response = await fetch(base + "/api/health", {
+      headers: { Authorization: "Bearer " + token }
+    });
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const result = await response.json();
+    if (!result.ok) throw new Error("الخادم لم يؤكد الجاهزية");
+    connectionState.textContent = "متصل بخادم AI Agent Hub — " + new Date(result.time).toLocaleString("ar-EG");
+  } catch (error) {
+    connectionState.textContent = "فشل الاتصال: " + error.message;
+  }
+};
+let running=true;
+document.getElementById("toggleAgent").onclick=()=>{running=!running;document.getElementById("agentStatus").textContent=running?"جاهز للعمل":"متوقف مؤقتًا";document.getElementById("toggleAgent").textContent=running?"إيقاف عرض حالة التشغيل":"تفعيل عرض حالة التشغيل";};
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");["home","agents","publish","reports"].forEach(id=>document.getElementById(id).classList.toggle("hidden",id!==b.dataset.tab));});
+document.getElementById("saveSettings").onclick=()=>{document.getElementById("goalNum").textContent=document.getElementById("dailyGoal").value;alert("تم حفظ إعدادات العرض على هذا الجهاز.");};
+if("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script>
+</body></html>
