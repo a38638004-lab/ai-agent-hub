@@ -72,9 +72,9 @@ const apiBaseInput = document.getElementById("apiBase");
 const apiTokenInput = document.getElementById("apiToken");
 const connectionState = document.getElementById("connectionState");
 document.getElementById("testApi").onclick = async () => {
-  const base = apiBaseInput.value.trim().replace(/\\/$/, "");
+  const base = apiBaseInput.value.trim().replace(/\/$/, "");
   const token = apiTokenInput.value;
-  if (!base || !/^https:\\/\\//i.test(base) || !token) {
+  if (!base || !/^https:\/\//i.test(base) || !token) {
     connectionState.textContent = "أدخل رابط HTTPS ورمز الخادم أولًا.";
     return;
   }
