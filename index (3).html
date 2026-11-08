@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827"><title>AI Agent Hub</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b1220;color:#edf2f7;font-family:Arial,Tahoma,sans-serif}
+header{padding:22px;background:#101b2e;border-bottom:1px solid #26364d}h1{margin:0 0 8px;font-size:24px}small,.muted{color:#9fb0c7}
+main{max-width:900px;margin:auto;padding:16px}.panel{background:#121e31;border:1px solid #26364d;border-radius:14px;padding:16px;margin:14px 0}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}button{border:0;border-radius:9px;padding:11px 14px;background:#2563eb;color:white;font-weight:bold;cursor:pointer}
+button.secondary{background:#334155}button.danger{background:#a83245}input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #40516b;background:#0b1424;color:white;margin:6px 0 12px}
+label{display:block;color:#c5d2e3} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.item{padding:12px;border:1px solid #34445d;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.status{padding:9px;border-radius:8px;background:#26364d;margin:8px 0}.good{color:#86efac}.bad{color:#fca5a5}
+.hidden{display:none}.note{line-height:1.8;color:#c5d2e3;font-size:14px}
+</style></head>
+<body>
+<header><h1>AI Agent Hub</h1><small>لوحة إدارة الحسابات والمسودات والأوامر</small></header>
+<main>
+<section class="panel">
+ <h3>إعداد الاتصال</h3>
+ <label>رابط Worker</label><input id="api" value="https://ai-agent-hub-api.a38638004.workers.dev">
+ <label>مفتاح HUB API TOKEN</label><input id="token" type="password" autocomplete="off" placeholder="اكتب المفتاح هنا على جهازك فقط">
+ <button onclick="connect()">اختبار الاتصال وحفظ الإعداد</button>
+ <div id="status" class="status">لم يتم اختبار الاتصال بعد</div>
+ <p class="note">المفتاح يُحفظ في هذا المتصفح فقط. لا ترسله لأي شخص ولا تضعه في GitHub.</p>
+</section>
+<nav>
+<button class="secondary" onclick="show('accounts')">الحسابات</button>
+<button class="secondary" onclick="show('drafts')">المسودات</button>
+<button class="secondary" onclick="show('commands')">الأوامر</button>
+<button class="secondary" onclick="show('earnings')">الإيرادات</button>
+<button class="secondary" onclick="show('activity')">النشاط</button>
+</nav>
+<section id="accounts" class="panel">
+<h3>إضافة حساب</h3><div class="grid">
+<div><label>المنصة</label><select id="platform"><option>TikTok</option><option>Facebook</option><option>Instagram</option><option>YouTube</option></select></div>
+<div><label>اسم/وصف الحساب</label><input id="accountLabel" placeholder="مثال: حساب الأطفال"></div>
+</div><label>الغرض</label><input id="purpose" placeholder="تسويق أو محتوى أطفال...">
+<button onclick="addAccount()">إضافة الحساب للسيرفر</button><div id="accountList"></div>
+</section>
+<section id="drafts" class="panel hidden"><h3>حفظ مسودة محتوى</h3>
+<label>الحساب</label><select id="draftAccount"><option value="">بدون تحديد</option></select>
+<label>عنوان المسودة</label><input id="draftTitle">
+<label>النص / الكابشن</label><textarea id="draftCaption" rows="4"></textarea>
+<button onclick="addDraft()">حفظ المسودة</button><div id="draftList"></div>
+</section>
+<section id="commands" class="panel hidden"><h3>تسجيل أمر جماعي</h3>
+<label>نوع الأمر</label><select id="commandAction"><option value="prepare_content">تجهيز محتوى</option><option value="review_accounts">مراجعة الحسابات</option><option value="schedule_reminder">تذكير بالنشر</option></select>
+<label>تفاصيل الأمر</label><textarea id="commandPayload" rows="3" placeholder="اكتب التفاصيل المطلوبة"></textarea>
+<button onclick="addCommand()">إضافة لقائمة الانتظار</button><div id="commandList"></div>
+<p class="note">الأوامر هنا تُسجّل في قائمة انتظار فقط؛ لا يوجد منفّذ تلقائي متصل بها حتى الآن.</p>
+</section>
+<section id="earnings" class="panel hidden"><h3>تسجيل الإيرادات</h3>
+<label>الوصف</label><input id="earningDesc" placeholder="مثال: دخل حملة">
+<label>المبلغ بالجنيه</label><input id="earningAmount" type="number" min="0" step="0.01">
+<button onclick="addEarning()">تسجيل الإيراد</button><div id="earningList"></div>
+</section>
+<section id="activity" class="panel hidden"><h3>سجل النشاط</h3><button onclick="loadActivity()">تحديث السجل</button><div id="activityList"></div></section>
+<p class="note">تنبيه: ربط الحسابات هنا يسجل بياناتها الإدارية فقط ولا يعني تسجيل الدخول إلى المنصة. رفع المسودات أو النشر يحتاج ربطًا رسميًا وموافقة المستخدم؛ النشر التلقائي المباشر غير مفعّل.</p>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+let api=localStorage.getItem("hub_api")||$("api").value;
+$("api").value=api;
+$("token").value=sessionStorage.getItem("hub_token")||"";
+function auth(){return { "Content-Type":"application/json","Authorization":"Bearer "+$("token").value.trim()};}
+async function call(path,opts={}) {
+ const base=$("api").value.trim().replace(/\/+$/,"");
+ const r=await fetch(base+path,{...opts,headers:{...auth(),...(opts.headers||{})}});
+ let data={};try{data=await r.json()}catch{}
+ if(!r.ok) throw new Error(data.detail||data.error||("HTTP "+r.status));
+ return data;
+}
+function status(msg,ok=true){$("status").textContent=msg;$("status").className="status "+(ok?"good":"bad");}
+async function connect(){
+ try{$("api").value=$("api").value.trim();const r=await call("/api/health");localStorage.setItem("hub_api",$("api").value);sessionStorage.setItem("hub_token",$("token").value.trim());status("متصل — قاعدة البيانات: "+r.database);await refreshAll();}
+ catch(e){status("فشل الاتصال: "+e.message,false);}
+}
+function show(id){document.querySelectorAll("main>section.panel").forEach(x=>x.classList.add("hidden"));$(id).classList.remove("hidden");if(id==="accounts")loadAccounts();if(id==="drafts")loadDrafts();if(id==="commands")loadCommands();if(id==="earnings")loadEarnings();if(id==="activity")loadActivity();}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+async function loadAccounts(){try{const d=await call("/api/accounts");$("accountList").innerHTML=d.items.map(x=>`<div class="item"><span><b>${esc(x.label)}</b><br><small>${esc(x.platform)} — ${esc(x.purpose)}</small></span><button class="danger" onclick="delAccount('${x.id}')">حذف</button></div>`).join("")||"لا توجد حسابات بعد";$("draftAccount").innerHTML='<option value="">بدون تحديد</option>'+d.items.map(x=>`<option value="${x.id}">${esc(x.label)}</option>`).join("");}catch(e){$("accountList").textContent=e.message;}}
+async function addAccount(){try{await call("/api/accounts",{method:"POST",body:JSON.stringify({platform:$("platform").value,label:$("accountLabel").value.trim(),purpose:$("purpose").value.trim()})});$("accountLabel").value="";$("purpose").value="";await loadAccounts();}catch(e){alert(e.message)}}
+async function delAccount(id){if(!confirm("متأكد من حذف الحساب؟"))return;try{await call("/api/accounts/"+id,{method:"DELETE"});loadAccounts()}catch(e){alert(e.message)}}
+async function loadDrafts(){try{const d=await call("/api/drafts");$("draftList").innerHTML=d.items.map(x=>`<div class="item"><span><b>${esc(x.title||"بدون عنوان")}</b><br><small>${esc(x.caption)}</small></span><button class="danger" onclick="delDraft('${x.id}')">حذف</button></div>`).join("")||"لا توجد مسودات";}catch(e){$("draftList").textContent=e.message}}
+async function addDraft(){try{await call("/api/drafts",{method:"POST",body:JSON.stringify({account_id:$("draftAccount").value,title:$("draftTitle").value,caption:$("draftCaption").value})});$("draftTitle").value="";$("draftCaption").value="";loadDrafts()}catch(e){alert(e.message)}}
+async function delDraft(id){try{await call("/api/drafts/"+id,{method:"DELETE"});loadDrafts()}catch(e){alert(e.message)}}
+async function loadCommands(){try{const d=await call("/api/commands");$("commandList").innerHTML=d.items.map(x=>`<div class="item"><span>${esc(x.action)}<br><small>${esc(x.status)} — ${esc(x.created_at)}</small></span></div>`).join("")||"لا توجد أوامر";}catch(e){$("commandList").textContent=e.message}}
+async function addCommand(){try{await call("/api/commands",{method:"POST",body:JSON.stringify({action:$("commandAction").value,payload:{details:$("commandPayload").value}})});$("commandPayload").value="";loadCommands()}catch(e){alert(e.message)}}
+async function loadEarnings(){try{const d=await call("/api/earnings");$("earningList").innerHTML=d.items.map(x=>`<div class="item"><span>${esc(x.description)}</span><b>${Number(x.amount).toFixed(2)} ج.م</b></div>`).join("")||"لا توجد إيرادات مسجلة";}catch(e){$("earningList").textContent=e.message}}
+async function addEarning(){try{await call("/api/earnings",{method:"POST",body:JSON.stringify({description:$("earningDesc").value,amount:$("earningAmount").value})});$("earningDesc").value="";$("earningAmount").value="";loadEarnings()}catch(e){alert(e.message)}}
+async function loadActivity(){try{const d=await call("/api/activity");$("activityList").innerHTML=d.items.map(x=>`<div class="item"><span>${esc(x.message)}<br><small>${esc(x.created_at)}</small></span></div>`).join("")||"السجل فارغ";}catch(e){$("activityList").textContent=e.message}}
+async function refreshAll(){await Promise.all([loadAccounts(),loadDrafts(),loadCommands(),loadEarnings(),loadActivity()]);}
+if($("token").value) connect();
+</script></body></html>
